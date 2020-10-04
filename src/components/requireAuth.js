@@ -24,7 +24,7 @@ function requireAuth(ChildComponent) {
   }
 
   const mapStateToProps = ({ auth }) => {
-    return { auth };
+    return { auth: auth.token };
   };
   return connect(mapStateToProps)(ComposedComponent);
 }

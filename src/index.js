@@ -8,7 +8,15 @@ import reducers from "./reducers";
 import App from "./components/App";
 import "./index.css";
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(
+  reducers,
+  {
+    auth: {
+      token: localStorage.getItem("token"),
+    },
+  },
+  applyMiddleware(reduxThunk)
+);
 
 ReactDOM.render(
   <Provider store={store}>

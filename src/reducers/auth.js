@@ -1,8 +1,21 @@
-import { CHANGE_AUTH } from "../actions/types";
-export default function (state = false, action) {
+import { SET_AUTH, AUTH_ERROR } from "../actions/types";
+
+let INITIAL_STATE = {
+  token: "",
+  error: "",
+};
+
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case CHANGE_AUTH:
-      return action.payload;
+    case SET_AUTH:
+      const { token } = action.payload;
+      return Object.assign({}, state, {
+        token: token,
+      });
+    case AUTH_ERROR:
+      return Object.assign({}, state, {
+        token: action.payload,
+      });
     default:
       return state;
   }

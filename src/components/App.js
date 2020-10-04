@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";
@@ -16,27 +17,30 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="main-app">
-          <div className="header">
-            <Header />
-          </div>
-          <div className="sub-components">
-            <Route path="/" exact component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/sendMessageOptions" component={SendMessageOptions} />
-            <Route
-              path="/watchMessagesOptions"
-              component={WatchMessagesOptions}
-            />
-            <Route path="/selectSenderType" component={SelectSenderType} />
-            <Route path="/selectChannel" component={SelectChannel} />
-            <Route path="/scheduledMessages" component={ScheduledMessages} />
-            <Route path="/messageForm" component={MessageForm} />
-            <Route path="/allMessages" component={AllMessages} />
-          </div>
+          <Header />
+
+          <Route path="/" exact component={Home} />
+          <Route path="/login">
+            {this.props.auth.token ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route path="/sendMessageOptions" component={SendMessageOptions} />
+          <Route
+            path="/watchMessagesOptions"
+            component={WatchMessagesOptions}
+          />
+          <Route path="/selectSenderType" component={SelectSenderType} />
+          <Route path="/selectChannel" component={SelectChannel} />
+          <Route path="/scheduledMessages" component={ScheduledMessages} />
+          <Route path="/messageForm" component={MessageForm} />
+          <Route path="/allMessages" component={AllMessages} />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
+export default connect(mapStateToProps)(App);
