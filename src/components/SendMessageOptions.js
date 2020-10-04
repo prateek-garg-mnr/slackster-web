@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class SendMessageOptions extends Component {
   render() {
@@ -6,4 +7,4 @@ class SendMessageOptions extends Component {
   }
 }
 
-export default SendMessageOptions;
+export default requireAuth(SendMessageOptions);

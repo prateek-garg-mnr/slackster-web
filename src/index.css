@@ -1,0 +1,61 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(-120deg, #3eb991, #6ecadc, #eca820, #e01563);
+    position: relative;
+    animation: gradient 15s ease infinite;
+}
+
+.main-app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.sub-components {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center
+}
+
+.login {
+    background: rgb(255, 255, 255, 0.2);
+    height: 400px;
+    border-radius: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

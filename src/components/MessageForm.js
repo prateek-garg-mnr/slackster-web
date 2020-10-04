@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class MessageForm extends Component {
   render() {
@@ -6,4 +7,4 @@ class MessageForm extends Component {
   }
 }
 
-export default MessageForm;
+export default requireAuth(MessageForm);

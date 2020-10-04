@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class AllMessages extends Component {
   render() {
@@ -6,4 +7,4 @@ class AllMessages extends Component {
   }
 }
 
-export default AllMessages;
+export default requireAuth(AllMessages);

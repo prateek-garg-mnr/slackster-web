@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class WatchMessagesOptions extends Component {
   render() {
@@ -6,4 +7,4 @@ class WatchMessagesOptions extends Component {
   }
 }
 
-export default WatchMessagesOptions;
+export default requireAuth(WatchMessagesOptions);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class SelectChannel extends Component {
   render() {
@@ -6,4 +7,4 @@ class SelectChannel extends Component {
   }
 }
 
-export default SelectChannel;
+export default requireAuth(SelectChannel);

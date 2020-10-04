@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import requireAuth from "./requireAuth";
 
 class SelectSenderType extends Component {
   render() {
@@ -6,4 +7,4 @@ class SelectSenderType extends Component {
   }
 }
 
-export default SelectSenderType;
+export default requireAuth(SelectSenderType);
