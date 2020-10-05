@@ -1,11 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import * as actions from "../actions";
 class Header extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
+  renderButtons = () => {
+    if (this.props.user.name) {
+      return (
+        <Fragment>
+          <li className="header-list-item">
+            <Link to="/" className="header-link">
+              Home
+            </Link>
+          </li>
+        </Fragment>
+      );
+    }
+    return;
+  };
+
   render() {
+    console.log("userdata", this.props);
+    const { profilePicture, name } = this.props.user;
+    const fillerImg =
+      "https://secure.gravatar.com/avatar/9dfaa3763ecd4b0dd55e4527182cc915.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0026-512.png";
     return (
       <motion.div
         initial={
@@ -25,19 +48,15 @@ class Header extends Component {
             <li className="header-list-item">
               <h1 className="app-name">Slackster</h1>
             </li>
-            <li className="header-list-item">
-              <Link to="/" className="header-link">
-                Home
-              </Link>
-            </li>
+            {this.renderButtons()}
           </ul>
 
           <ul className="user-info">
-            <li className="inline username">Prateek Garg</li>
+            <li className="inline username">{name ? name : "Login first"}</li>
 
             <li className="inline img-container">
               <img
-                src="https://secure.gravatar.com/avatar/9dfaa3763ecd4b0dd55e4527182cc915.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0026-512.png"
+                src={profilePicture ? profilePicture : fillerImg}
                 className="profile-picture"
                 alt="user"
               />
@@ -48,7 +67,7 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ auth }) => {
-  return { auth };
+const mapStateToProps = ({ user }) => {
+  return { user };
 };
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);
