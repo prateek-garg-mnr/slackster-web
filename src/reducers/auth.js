@@ -14,7 +14,7 @@ export default function (state = INITIAL_STATE, action) {
       });
     case AUTH_ERROR:
       return Object.assign({}, state, {
-        token: action.payload,
+        error: action.payload,
       });
     default:
       return state;

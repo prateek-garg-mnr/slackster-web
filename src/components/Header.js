@@ -13,16 +13,24 @@ class Header extends Component {
     if (this.props.user.name) {
       return (
         <Fragment>
-          <li className="header-list-item">
+          <motion.li
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="header-list-item"
+          >
             <Link to="/" className="header-link">
               Home
             </Link>
-          </li>
-          <li className="header-list-item">
+          </motion.li>
+          <motion.li
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="header-list-item"
+          >
             <Link to="/signout" className="header-link">
               Sign Out
             </Link>
-          </li>
+          </motion.li>
         </Fragment>
       );
     }
@@ -36,12 +44,8 @@ class Header extends Component {
       "https://secure.gravatar.com/avatar/9dfaa3763ecd4b0dd55e4527182cc915.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0026-512.png";
     return (
       <motion.div
-        initial={
-          // initial point of animation
-          { y: -250 }
-        }
+        initial={{ y: -250 }}
         animate={{
-          // move up
           y: -10,
         }}
         transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
