@@ -18,6 +18,11 @@ class Header extends Component {
               Home
             </Link>
           </li>
+          <li className="header-list-item">
+            <Link to="/signout" className="header-link">
+              Sign Out
+            </Link>
+          </li>
         </Fragment>
       );
     }

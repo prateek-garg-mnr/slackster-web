@@ -11,6 +11,7 @@ import SelectChannel from "./SelectChannel";
 import ScheduledMessages from "./ScheduledMessages";
 import MessageForm from "./MessageForm";
 import AllMessages from "./AllMessages";
+import Signout from "./Signout";
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/scheduledMessages" component={ScheduledMessages} />
           <Route path="/messageForm" component={MessageForm} />
           <Route path="/allMessages" component={AllMessages} />
+          <Route path="/signout" component={Signout} />
         </div>
       </BrowserRouter>
     );
