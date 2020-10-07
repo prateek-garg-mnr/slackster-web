@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_AUTH, AUTH_ERROR, FETCH_USER } from "./types";
+import { SET_AUTH, AUTH_ERROR, FETCH_USER, LOADING } from "./types";
 
 export function auth(code, history) {
   return async function (dispatch) {
@@ -10,9 +10,12 @@ export function auth(code, history) {
           code,
         }
       );
+      dispatch({ type: LOADING, payload: false });
       dispatch({ type: SET_AUTH, payload: response.data });
       localStorage.setItem("token", response.data.token);
     } catch (e) {
+      dispatch({ type: LOADING, payload: false });
+
       dispatch({
         type: AUTH_ERROR,
         payload: "Some Error Occured, Try again!!!",
@@ -32,4 +35,8 @@ export function fetchUser() {
       dispatch({ type: FETCH_USER, payload: response.data.user });
     } catch (e) {}
   };
+}
+
+export function loader(data) {
+  return { type: LOADING, payload: data };
 }

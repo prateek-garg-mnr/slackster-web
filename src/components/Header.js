@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import CircularLoader from "./CirculaLoader";
 
 import * as actions from "../actions";
 class Header extends Component {
@@ -10,6 +11,7 @@ class Header extends Component {
   }
 
   renderButtons = () => {
+    console.log("user from header", this.props.user);
     if (this.props.user.name) {
       return (
         <Fragment>
@@ -38,7 +40,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log("userdata", this.props);
     const { profilePicture, name } = this.props.user;
     const fillerImg =
       "https://secure.gravatar.com/avatar/9dfaa3763ecd4b0dd55e4527182cc915.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0026-512.png";
@@ -76,7 +77,7 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = ({ user }) => {
-  return { user };
+const mapStateToProps = ({ user, loading }) => {
+  return { user, loading };
 };
 export default connect(mapStateToProps, actions)(Header);

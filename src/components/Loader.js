@@ -1,9 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-class Loader extends Component {
-  render() {
-    return <div>Loader</div>;
-  }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "85%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
+export default function LinearIndeterminate() {
+  const classes = useStyles();
+
+  return (
+    <div className="loader">
+      <div className={classes.root}>
+        <LinearProgress color="secondary" />
+      </div>
+    </div>
+  );
 }
-
-export default Loader;

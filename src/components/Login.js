@@ -3,6 +3,7 @@ import SlackLogin from "react-slack-login";
 import * as actions from "../actions";
 import { connect } from "react-redux";
 import { motion } from "framer-motion";
+import Loader from "./Loader";
 
 class Login extends Component {
   onFailure = (data) => {
@@ -11,10 +12,15 @@ class Login extends Component {
   };
   onSuccess = (data) => {
     console.log("data ", data);
+    this.props.loader(true);
     this.props.auth(data, this.props.history);
   };
   render() {
-    return (
+    const { loading } = this.props;
+    console.log("loading", loading);
+    return loading ? (
+      <Loader />
+    ) : (
       <motion.div
         className="home container"
         initial={{ opacity: 0 }}
@@ -38,5 +44,7 @@ class Login extends Component {
     );
   }
 }
-
-export default connect(null, actions)(Login);
+const mapStateToProps = ({ loading }) => {
+  return { loading };
+};
+export default connect(mapStateToProps, actions)(Login);

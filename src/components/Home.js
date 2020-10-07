@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import * as actions from "../actions";
+import Loader from "./Loader";
 
 import requireAuth from "./requireAuth";
 class Home extends Component {
-  render() {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+  renderContent = () => {
     return (
       <div className="wrapper-main">
         <div className="wrapper-sub">
@@ -18,7 +23,7 @@ class Home extends Component {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="option-li-item"
               >
-                <Link to="/messageForm" className="link">
+                <Link to="/sendMessageoptions" className="link">
                   Send Message
                 </Link>
               </motion.li>
@@ -38,7 +43,13 @@ class Home extends Component {
         </div>
       </div>
     );
+  };
+
+  render() {
+    return this.renderContent();
   }
 }
-
-export default requireAuth(Home);
+const mapStateToProps = ({ auth, loading }) => {
+  return { auth, loading };
+};
+export default connect(mapStateToProps, actions)(requireAuth(Home));
