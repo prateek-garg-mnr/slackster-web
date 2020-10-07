@@ -1,5 +1,11 @@
 import axios from "axios";
-import { SET_AUTH, AUTH_ERROR, FETCH_USER, LOADING } from "./types";
+import {
+  SET_AUTH,
+  AUTH_ERROR,
+  FETCH_USER,
+  LOADING,
+  MESSAGE_TYPE,
+} from "./types";
 
 export function auth(code, history) {
   return async function (dispatch) {
@@ -35,6 +41,10 @@ export function fetchUser() {
       dispatch({ type: FETCH_USER, payload: response.data.user });
     } catch (e) {}
   };
+}
+
+export function messageType(data) {
+  return { type: MESSAGE_TYPE, payload: data };
 }
 
 export function loader(data) {

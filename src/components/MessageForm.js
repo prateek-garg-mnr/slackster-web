@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 class MessageForm extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="wrapper-main">
         <div className="wrapper-sub">
@@ -15,7 +16,7 @@ class MessageForm extends Component {
                 initial={{ x: "100vw" }}
                 animate={{ x: 0 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0 }}
                 className="option-li-item"
               >
                 <input type="text" className="input" />
@@ -24,7 +25,7 @@ class MessageForm extends Component {
                 initial={{ x: "100vw" }}
                 animate={{ x: 0 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.3 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
                 className="option-li-item"
               >
                 <Link to="/messageForm" className="link">
@@ -35,7 +36,7 @@ class MessageForm extends Component {
                 initial={{ x: "100vw" }}
                 animate={{ x: 0 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.7 }}
                 className="option-li-item"
               >
                 <Link to="/messageForm" className="link">
@@ -46,7 +47,7 @@ class MessageForm extends Component {
                 initial={{ x: "100vw" }}
                 animate={{ x: 0 }}
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.9 }}
                 className="option-li-item"
               >
                 <Link to="/messageForm" className="link">
@@ -60,7 +61,7 @@ class MessageForm extends Component {
     );
   }
 }
-
-export default reduxForm({
-  form: "signup",
-})(requireAuth(MessageForm));
+const mapStateToProps = ({ messageType }) => {
+  return { messageType };
+};
+export default connect(mapStateToProps)(requireAuth(MessageForm));

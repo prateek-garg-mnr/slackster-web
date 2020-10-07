@@ -206,3 +206,22 @@ body {
 .MuiLinearProgress-colorSecondary {
     background-color: rgb(255 255 255) !important;
 }
+
+.options-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 103%;
+}
+
+.options-heading p {
+    margin-left: auto !important;
+    margin-right: auto;
+    text-align: center;
+    font-size: 40px;
+    margin-left: 30px;
+    color: white;
+    font-family: 'Prompt', sans-serif;
+
+}
