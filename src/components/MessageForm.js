@@ -156,7 +156,9 @@ function MessageForm(props) {
               />
             </motion.li>
 
-            {props.messageType === "particular" ? (
+            {props.messageType === "instantly" ? (
+              ""
+            ) : (
               <motion.li
                 initial={{ x: "100vw" }}
                 animate={{ x: 0 }}
@@ -175,8 +177,6 @@ function MessageForm(props) {
                   }}
                 />
               </motion.li>
-            ) : (
-              ""
             )}
             <motion.li
               initial={{ x: "100vw" }}
