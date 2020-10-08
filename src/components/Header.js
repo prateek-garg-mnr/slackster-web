@@ -11,7 +11,6 @@ class Header extends Component {
   }
 
   renderButtons = () => {
-    console.log("user from header", this.props.user);
     if (this.props.user.name) {
       return (
         <Fragment>

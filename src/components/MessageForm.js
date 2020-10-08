@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import requireAuth from "./requireAuth";
-import { motion } from "framer-motion";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
+// framer-motion animation
+import { motion } from "framer-motion";
+
+// material-ui
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -10,6 +13,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+
+import requireAuth from "./requireAuth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +77,8 @@ function MessageForm(props) {
 
   // if no messageType then redirect to home
   useEffect(() => {
-    if (!this.props.messageType) {
+    if (!props.messageType) {
+      props.history.push("/");
     }
   });
 
@@ -183,7 +189,8 @@ function MessageForm(props) {
     </div>
   );
 }
-const mapStateToProps = ({ messageType }) => {
-  return { messageType };
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { messageType: state.messageType };
 };
 export default connect(mapStateToProps)(requireAuth(MessageForm));
