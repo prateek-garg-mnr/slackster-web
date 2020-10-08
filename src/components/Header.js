@@ -54,9 +54,14 @@ class Header extends Component {
         <div className="logo-container"></div>
         <div className="header-btn-container">
           <ul className="header-ul">
-            <li className="header-list-item">
+            <motion.li
+              drag
+              dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+              dragMomentum={false}
+              className="header-list-item"
+            >
               <h1 className="app-name">Slackster</h1>
-            </li>
+            </motion.li>
             {this.renderButtons()}
           </ul>
 
