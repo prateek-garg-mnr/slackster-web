@@ -14,6 +14,9 @@ const store = createStore(
     auth: {
       token: localStorage.getItem("token"),
     },
+    conversationList: {
+      conversationData: [],
+    },
   },
   applyMiddleware(reduxThunk)
 );

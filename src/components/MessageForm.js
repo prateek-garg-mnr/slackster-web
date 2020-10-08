@@ -15,6 +15,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 import requireAuth from "./requireAuth";
+import * as actions from "../actions";
+import Loader from "./Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,11 +82,29 @@ function MessageForm(props) {
     if (!props.messageType) {
       props.history.push("/");
     }
+    console.log(props);
   });
 
-  console.log(props);
+  useEffect(() => {
+    props.loader(true);
+    props.conversationListAction();
+  }, []);
+
+  // render channelName
+  const renderChannel = () => {
+    return props.conversationList.conversationData.map((option) => {
+      return (
+        <MenuItem value={option.conversationId} key={option.conversationId}>
+          <span className="options">{option.conversationName}</span>
+        </MenuItem>
+      );
+    });
+  };
+
   const classes = useStyles();
-  return (
+  return props.loading ? (
+    <Loader />
+  ) : (
     <div className={`${classes.root} wrapper-main`}>
       <div className="wrapper-sub">
         <div className="Main Options">
@@ -105,9 +125,7 @@ function MessageForm(props) {
                   value={channel}
                   onChange={handleChannelChange}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {renderChannel()}
                 </Select>
               </FormControl>
             </motion.li>
@@ -156,7 +174,7 @@ function MessageForm(props) {
               />
             </motion.li>
 
-            {props.messageType === "instantly" ? (
+            {props.messageType === "instantMessage" ? (
               ""
             ) : (
               <motion.li
@@ -194,8 +212,7 @@ function MessageForm(props) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  console.log(state);
-  return { messageType: state.messageType };
+const mapStateToProps = ({ messageType, loading, conversationList }) => {
+  return { messageType, loading, conversationList };
 };
-export default connect(mapStateToProps)(requireAuth(MessageForm));
+export default connect(mapStateToProps, actions)(requireAuth(MessageForm));

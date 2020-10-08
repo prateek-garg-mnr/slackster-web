@@ -7,10 +7,10 @@ import * as actions from "../actions";
 
 class SendMessageOptions extends Component {
   options = [
-    { name: "Instantly", value: "instantly" },
-    { name: "On Particular Time", value: "particular" },
-    { name: "Weekly", value: "weekly" },
-    { name: "Monthly", value: "monthly" },
+    { name: "Instantly", value: "instantMessage" },
+    { name: "On Particular Time", value: "particularDate" },
+    { name: "Weekly", value: "weeklyMessages" },
+    { name: "Monthly", value: "monthlyMessages" },
   ];
   delay = 0.0;
   renderContent() {
@@ -31,7 +31,7 @@ class SendMessageOptions extends Component {
         >
           <Link
             to="/messageForm"
-            onClick={() => this.props.messageType(option.value)}
+            onClick={() => this.props.messageTypeAction(option.value)}
             className="link"
           >
             {option.name}

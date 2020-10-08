@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import CircularLoader from "./CirculaLoader";
 
 import * as actions from "../actions";
 class Header extends Component {

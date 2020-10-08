@@ -48,7 +48,7 @@ export function fetchUser() {
 }
 
 // set message type
-export function messageType(data) {
+export function messageTypeAction(data) {
   return { type: MESSAGE_TYPE, payload: data };
 }
 
@@ -58,17 +58,18 @@ export function loader(data) {
 }
 
 // fetch user's conversation list
-export function conversationList() {
+export function conversationListAction() {
   return async function (dispatch, getState) {
     try {
       const response = await axios.get(
-        "http://localhost:5000/conversation-list",
+        "http://localhost:5000/api/conversation-list",
         {
           headers: {
             Authorization: `Bearer ${getState().auth.token}`,
           },
         }
       );
+      dispatch({ type: LOADING, payload: false });
       dispatch({ type: CONVERSATION, payload: response.data });
     } catch (e) {}
   };
