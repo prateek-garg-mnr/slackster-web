@@ -1,12 +1,15 @@
 import axios from "axios";
+// action types
 import {
   SET_AUTH,
   AUTH_ERROR,
   FETCH_USER,
   LOADING,
   MESSAGE_TYPE,
+  CONVERSATION,
 } from "./types";
 
+// Fetch user's token
 export function auth(code, history) {
   return async function (dispatch) {
     try {
@@ -30,6 +33,7 @@ export function auth(code, history) {
   };
 }
 
+// fetch user's data
 export function fetchUser() {
   return async function (dispatch, getState) {
     try {
@@ -43,10 +47,29 @@ export function fetchUser() {
   };
 }
 
+// set message type
 export function messageType(data) {
   return { type: MESSAGE_TYPE, payload: data };
 }
 
+// loader's state
 export function loader(data) {
   return { type: LOADING, payload: data };
+}
+
+// fetch user's conversation list
+export function conversationList() {
+  return async function (dispatch, getState) {
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/conversation-list",
+        {
+          headers: {
+            Authorization: `Bearer ${getState().auth.token}`,
+          },
+        }
+      );
+      dispatch({ type: CONVERSATION, payload: response.data });
+    } catch (e) {}
+  };
 }
