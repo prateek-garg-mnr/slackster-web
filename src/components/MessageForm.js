@@ -155,24 +155,29 @@ function MessageForm(props) {
                 }}
               />
             </motion.li>
-            <motion.li
-              initial={{ x: "100vw" }}
-              animate={{ x: 0 }}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
-              className="option-li-item"
-            >
-              <TextField
-                id="datetime-local"
-                label="Next appointment"
-                type="datetime-local"
-                onChange={handleDateChange}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </motion.li>
+
+            {props.messageType === "particular" ? (
+              <motion.li
+                initial={{ x: "100vw" }}
+                animate={{ x: 0 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.5 }}
+                className="option-li-item"
+              >
+                <TextField
+                  id="datetime-local"
+                  label="Next appointment"
+                  type="datetime-local"
+                  onChange={handleDateChange}
+                  className={classes.textField}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </motion.li>
+            ) : (
+              ""
+            )}
             <motion.li
               initial={{ x: "100vw" }}
               animate={{ x: 0 }}
