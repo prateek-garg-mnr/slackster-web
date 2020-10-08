@@ -6,7 +6,12 @@ import requireAuth from "./requireAuth";
 import * as actions from "../actions";
 
 class SendMessageOptions extends Component {
-  options = ["Instantly", "Particular Time", "Weekly", "Monthly"];
+  options = [
+    { name: "Instantly", value: "instantly" },
+    { name: "On Particular Time", value: "particular" },
+    { name: "Weekly", value: "weekly" },
+    { name: "Monthly", value: "monthly" },
+  ];
   delay = 0.0;
   renderContent() {
     return this.options.map((option, index) => {
@@ -21,15 +26,15 @@ class SendMessageOptions extends Component {
             stiffness: 300,
             delay: this.delay,
           }}
-          key={option + index}
+          key={option.name + index}
           className="option-li-item"
         >
           <Link
             to="/messageForm"
-            onClick={() => this.props.messageType(option)}
+            onClick={() => this.props.messageType(option.value)}
             className="link"
           >
-            {option}
+            {option.name}
           </Link>
         </motion.li>
       );
