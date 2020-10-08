@@ -20,7 +20,7 @@ class Home extends Component {
             transition={{ delay: 0.5, duration: 2 }}
             className="options-heading"
           >
-            <p>Please Select What to do....</p>
+            <p>Welcome....!!!</p>
           </motion.div>
           <div className="Main Options">
             <ul className="option-List">
