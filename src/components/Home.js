@@ -14,6 +14,14 @@ class Home extends Component {
     return (
       <div className="wrapper-main">
         <div className="wrapper-sub">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 2 }}
+            className="options-heading"
+          >
+            <p>Please Select What to do....</p>
+          </motion.div>
           <div className="Main Options">
             <ul className="option-List">
               <motion.li

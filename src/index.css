@@ -2,17 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo&family=Prompt:wght@300&display=swap');
 
-/* root */
-html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-
+/* animation */
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -27,24 +17,46 @@ body {
     }
 }
 
+/* root */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+
+}
+
+
 #root {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(-120deg, #3eb991, #6ecadc, #eca820, #e01563);
     position: relative;
+    background: linear-gradient(-120deg, #3eb991, #6ecadc, #eca820, #e01563);
     animation: gradient 15s ease-in-out infinite;
 }
 
 .wrapper-main {
-    width: 100%
+    width: 100%;
+
 }
 
 .wrapper-sub {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 200px;
+    margin-top: 100px;
+}
+
+.btn {
+    background: transparent;
+    border: 0;
+    padding-top: 0;
+
+    cursor: pointer;
 }
 
 /* App */
@@ -224,4 +236,26 @@ body {
     color: white;
     font-family: 'Prompt', sans-serif;
 
+}
+
+
+
+
+/* material overwrite */
+
+.MuiInputBase-root {
+    color: rgb(255 255 255) !important;
+}
+
+.MuiFormLabel-root {
+    color: rgb(255 255 255) !important;
+}
+
+.MuiInput-underline:before {
+    border-bottom: 1px solid rgb(255 255 255) !important;
+
+}
+
+.MuiInput-underline:after {
+    border-bottom: 2px solid #ffffff !important;
 }
