@@ -4,3 +4,4 @@ export const FETCH_USER = "fetch_user";
 export const LOADING = "loading";
 export const MESSAGE_TYPE = "message_type";
 export const CONVERSATION = "conversation";
+export const INSTANT_MESSAGE = "instantMessage";

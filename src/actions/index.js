@@ -7,6 +7,7 @@ import {
   LOADING,
   MESSAGE_TYPE,
   CONVERSATION,
+  INSTANT_MESSAGE,
 } from "./types";
 
 // Fetch user's token
@@ -74,3 +75,31 @@ export function conversationListAction() {
     } catch (e) {}
   };
 }
+
+export const sendInstantMessage = (
+  message,
+  channelId,
+  userType,
+  messageType,
+  fromApp = true
+) => async (dispatch, getState) => {
+  const response = await axios.post(
+    "http://localhost:5000/api/send-message",
+    {
+      message,
+      channelId,
+      userType,
+      messageType,
+      fromApp,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    }
+  );
+
+  if (response.data.response === true) {
+    dispatch({ type: INSTANT_MESSAGE, payload: response.data });
+  }
+};

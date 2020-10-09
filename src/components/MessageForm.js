@@ -72,7 +72,10 @@ function MessageForm(props) {
 
   // handle submit action
   const handleSubmit = () => {
-    console.log(text, channel, userType, date);
+    if (props.messageType === "instantMessage") {
+      console.log("user type", userType);
+      props.sendInstantMessage(text, channel, userType, props.messageType);
+    }
   };
 
   // if no messageType then redirect to home
@@ -105,6 +108,15 @@ function MessageForm(props) {
   ) : (
     <div className={`${classes.root} wrapper-main`}>
       <div className="wrapper-sub">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 2 }}
+          className="options-heading"
+          style={{ marginTop: "-49px" }}
+        >
+          <p>Details</p>
+        </motion.div>
         <div className="Main Options">
           <ul className="option-List">
             <motion.li
@@ -141,11 +153,11 @@ function MessageForm(props) {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={channel}
+                  value={userType}
                   onChange={handleUserTypeChange}
                 >
-                  <MenuItem value={10}>Bot</MenuItem>
-                  <MenuItem value={20}>User</MenuItem>
+                  <MenuItem value={"bot"}>Bot</MenuItem>
+                  <MenuItem value={"user"}>User</MenuItem>
                 </Select>
               </FormControl>
             </motion.li>
