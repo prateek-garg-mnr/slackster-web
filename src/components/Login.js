@@ -37,7 +37,15 @@ class Login extends Component {
             onFailure={this.onFailed}
             onSuccess={this.onSuccess}
             slackClientId="1364451180086.1366032718646"
-            slackUserScope="identity.basic"
+            slackUserScope={[
+              "channels:read",
+              "groups:read",
+              "mpim:read",
+              "im:read",
+              "users:read",
+              "channels:write",
+              "chat:write",
+            ]}
           />
         </div>
       </motion.div>
