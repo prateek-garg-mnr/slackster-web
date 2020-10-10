@@ -15,7 +15,7 @@ export function auth(code, history) {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/slack-token",
+        "https://slacksterpoc.herokuapp.com/api/slack-token",
         {
           code,
         }
@@ -38,11 +38,14 @@ export function auth(code, history) {
 export function fetchUser() {
   return async function (dispatch, getState) {
     try {
-      const response = await axios.get("http://localhost:5000/api/user", {
-        headers: {
-          Authorization: `Bearer ${getState().auth.token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://slacksterpoc.herokuapp.com/api/user",
+        {
+          headers: {
+            Authorization: `Bearer ${getState().auth.token}`,
+          },
+        }
+      );
       dispatch({ type: FETCH_USER, payload: response.data.user });
     } catch (e) {}
   };
@@ -63,7 +66,7 @@ export function conversationListAction() {
   return async function (dispatch, getState) {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/conversation-list",
+        "https://slacksterpoc.herokuapp.com/api/conversation-list",
         {
           headers: {
             Authorization: `Bearer ${getState().auth.token}`,
@@ -80,17 +83,15 @@ export const sendInstantMessage = (
   message,
   channelId,
   userType,
-  messageType,
-  fromApp = true
+  messageType
 ) => async (dispatch, getState) => {
   const response = await axios.post(
-    "http://localhost:5000/api/send-message",
+    "https://slacksterpoc.herokuapp.com/api/send-message",
     {
       message,
       channelId,
       userType,
       messageType,
-      fromApp,
     },
     {
       headers: {
