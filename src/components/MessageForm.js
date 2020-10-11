@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 
 // framer-motion animation
 import { motion } from "framer-motion";
@@ -60,10 +61,16 @@ function MessageForm(props) {
   const [date, setDate] = useState("");
 
   // error snackbar open close
-  const [errorOpen, setErrorOpen] = React.useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+
+  // validation snackbar
+  const [valErr, setValErr] = useState(false);
+
+  // error message
+  const [errorMessage, setErrorMessage] = useState("");
 
   // success snackbar open close
-  const [successOpen, setSuccessOpen] = React.useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
 
   // handle values
   // select channel name
@@ -84,12 +91,26 @@ function MessageForm(props) {
 
   // date to post message
   const handleDateChange = (event) => {
-    console.log(event.target.value);
+    const currentDate = moment();
+    const selectedDate = moment(event.target.value);
+    if (selectedDate <= currentDate.add(1, "minute")) {
+      setErrorMessage("Select the greater date and time than this");
+      setValErr(true);
+      return;
+    }
+    setValErr(false);
     setDate(event.target.value);
   };
 
   // handle submit action
   const handleSubmit = () => {
+    if (text === "" || channel === "" || userType === "") {
+      setErrorMessage(
+        "No field can be left empty. Check and fill all the fields"
+      );
+      setValErr(true);
+      return;
+    }
     if (props.messageType === "instantMessage") {
       console.log("user type", userType);
       props.loader(true);
@@ -101,6 +122,13 @@ function MessageForm(props) {
         props.history
       );
     } else {
+      if (date === "") {
+        setErrorMessage(
+          "No field can be left empty. Check and fill all the fields"
+        );
+        setValErr(true);
+        return;
+      }
       props.loader(true);
       props.scheduleMessage(
         text,
@@ -153,6 +181,17 @@ function MessageForm(props) {
     <Loader />
   ) : (
     <React.Fragment>
+      <Snackbar
+        open={valErr}
+        autoHideDuration={6000}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <Alert severity="error">{errorMessage}</Alert>
+      </Snackbar>
+
       <Snackbar
         open={errorOpen}
         autoHideDuration={6000}
