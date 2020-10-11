@@ -113,6 +113,7 @@ function MessageForm(props) {
     }
     if (props.messageType === "instantMessage") {
       console.log("user type", userType);
+      setValErr(true);
       props.loader(true);
       props.sendInstantMessage(
         text,
@@ -129,6 +130,7 @@ function MessageForm(props) {
         setValErr(true);
         return;
       }
+      setValErr(true);
       props.loader(true);
       props.scheduleMessage(
         text,
@@ -148,10 +150,8 @@ function MessageForm(props) {
       props.history.push("/sendMessageoptions");
     }
     if (props.messageStatus.response.response === true) {
-      setSuccessOpen(true);
-      setTimeout(() => {
-        props.history.push("/sendMessageoptions");
-      }, 2000);
+      // setSuccessOpen(true);
+      props.history.push("/sendMessageoptions");
     }
     if (props.messageStatus.error === true) {
       setErrorOpen(true);
