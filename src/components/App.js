@@ -5,7 +5,7 @@ import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";
 import SendMessageOptions from "./SendMessageOptions";
-import SelectChannel from "./SelectChannel";
+
 import ScheduledMessages from "./ScheduledMessages";
 import MessageForm from "./MessageForm";
 import AllMessages from "./AllMessages";
@@ -24,7 +24,6 @@ class App extends Component {
           </Route>
           <Route path="/sendMessageOptions" component={SendMessageOptions} />
 
-          <Route path="/selectChannel" component={SelectChannel} />
           <Route path="/scheduledMessages" component={ScheduledMessages} />
           <Route path="/messageForm" component={MessageForm} />
           <Route path="/allMessages" component={AllMessages} />
