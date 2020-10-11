@@ -10,6 +10,7 @@ class SendMessageOptions extends Component {
     { name: "Instantly", value: "instantMessage" },
     { name: "On Particular Time", value: "particularDate" },
     { name: "Daily", value: "dailyMessages" },
+    { name: "Every 5 Minutes", value: "minuteMessages" },
     { name: "Weekly", value: "weeklyMessages" },
     { name: "Monthly", value: "monthlyMessages" },
   ];
