@@ -163,3 +163,18 @@ export function allMessagesAction() {
     } catch (e) {}
   };
 }
+
+// reset response state
+export function resetMessageStatusState() {
+  return async function (dispatch) {
+    dispatch({
+      type: MESSAGE_SUCCESS,
+      payload: {
+        response: {
+          response: false,
+        },
+        error: false,
+      },
+    });
+  };
+}
