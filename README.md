@@ -10,7 +10,7 @@ for public channels, private channels, and direct messages
 ### It can :-
 
 1. Send Message Instantly
-2. Schedule messages :-
+2. Schedule messages :- <br>
    2.1 For a specific date <br>  
    2.2 Every 5 Minutes <br>
    2.3 Daily <br>
