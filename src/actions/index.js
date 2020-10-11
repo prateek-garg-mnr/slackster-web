@@ -10,16 +10,16 @@ import {
   INSTANT_MESSAGE,
 } from "./types";
 
+const baseURL = "https://slacksterpoc.herokuapp.com/api";
+// const baseURL = "http://localhost:5000/api";
+
 // Fetch user's token
 export function auth(code, history) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(
-        "https://slacksterpoc.herokuapp.com/api/slack-token",
-        {
-          code,
-        }
-      );
+      const response = await axios.post(`${baseURL}/slack-token`, {
+        code,
+      });
       dispatch({ type: LOADING, payload: false });
       dispatch({ type: SET_AUTH, payload: response.data });
       localStorage.setItem("token", response.data.token);
@@ -38,14 +38,11 @@ export function auth(code, history) {
 export function fetchUser() {
   return async function (dispatch, getState) {
     try {
-      const response = await axios.get(
-        "https://slacksterpoc.herokuapp.com/api/user",
-        {
-          headers: {
-            Authorization: `Bearer ${getState().auth.token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${baseURL}/user`, {
+        headers: {
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      });
       dispatch({ type: FETCH_USER, payload: response.data.user });
     } catch (e) {}
   };
@@ -65,20 +62,17 @@ export function loader(data) {
 export function conversationListAction() {
   return async function (dispatch, getState) {
     try {
-      const response = await axios.get(
-        "https://slacksterpoc.herokuapp.com/api/conversation-list",
-        {
-          headers: {
-            Authorization: `Bearer ${getState().auth.token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${baseURL}/conversation-list`, {
+        headers: {
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      });
       dispatch({ type: LOADING, payload: false });
       dispatch({ type: CONVERSATION, payload: response.data });
     } catch (e) {}
   };
 }
-
+// send instant message
 export const sendInstantMessage = (
   message,
   channelId,
@@ -86,7 +80,7 @@ export const sendInstantMessage = (
   messageType
 ) => async (dispatch, getState) => {
   const response = await axios.post(
-    "https://slacksterpoc.herokuapp.com/api/send-message",
+    `${baseURL}/send-message`,
     {
       message,
       channelId,
@@ -101,6 +95,35 @@ export const sendInstantMessage = (
   );
 
   if (response.data.response === true) {
+    dispatch({ type: INSTANT_MESSAGE, payload: response.data });
+  }
+};
+
+// send instant message
+export const scheduleMessage = (
+  message,
+  channelId,
+  userType,
+  time,
+  messageType
+) => async (dispatch, getState) => {
+  const response = await axios.post(
+    `${baseURL}/schedule-message`,
+    {
+      message,
+      channelId,
+      userType,
+      time,
+      messageType,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${getState().auth.token}`,
+      },
+    }
+  );
+
+  if (response.data.response.response === true) {
     dispatch({ type: INSTANT_MESSAGE, payload: response.data });
   }
 };

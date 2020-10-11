@@ -57,6 +57,7 @@ function MessageForm(props) {
 
   // select User type
   const handleUserTypeChange = (event) => {
+    console.log(event.target.value);
     setUserType(event.target.value);
   };
 
@@ -67,6 +68,7 @@ function MessageForm(props) {
 
   // date to post message
   const handleDateChange = (event) => {
+    console.log(event.target.value);
     setDate(event.target.value);
   };
 
@@ -75,7 +77,10 @@ function MessageForm(props) {
     if (props.messageType === "instantMessage") {
       console.log("user type", userType);
       props.sendInstantMessage(text, channel, userType, props.messageType);
+    } else {
+      props.scheduleMessage(text, channel, userType, date, props.messageType);
     }
+    console.log(date);
   };
 
   // if no messageType then redirect to home
