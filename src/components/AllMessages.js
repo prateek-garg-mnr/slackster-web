@@ -5,6 +5,8 @@ import * as actions from "../actions";
 import requireAuth from "./requireAuth";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
+import { motion } from "framer-motion";
+import Loader from "./Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +26,7 @@ const AllMessages = (props) => {
   const classes = useStyles();
 
   useEffect(() => {
+    props.loader(true);
     props.allMessagesAction();
   }, []);
 
@@ -70,13 +73,23 @@ const AllMessages = (props) => {
     });
   };
 
-  return (
-    <div className="message-container">
+  return props.loading ? (
+    <Loader />
+  ) : (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2, duration: 2 }}
+      className="message-container"
+    >
+      <div className="heading">
+        <motion.p>All Messages</motion.p>
+      </div>
       <div className={`message-sub ${classes.root}`}>{renderMessages()}</div>
-    </div>
+    </motion.div>
   );
 };
-const mapStateToProps = ({ allMessages }) => {
-  return { allMessages };
+const mapStateToProps = ({ allMessages, loading }) => {
+  return { allMessages, loading };
 };
 export default connect(mapStateToProps, actions)(requireAuth(AllMessages));
