@@ -26,3 +26,6 @@ for public channels, private channels, and direct messages
 3. run npm start
 
 It will run on PORT 3000
+
+API Doc :- https://github.com/prateek-garg-mnr/slackster
+Live URL :- https://slackster-web.vercel.app/
