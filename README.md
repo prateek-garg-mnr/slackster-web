@@ -11,11 +11,11 @@ for public channels, private channels, and direct messages
 
 1. Send Message Instantly
 2. Schedule messages :-
-   2.1 For a specific date  
-   2.2 Every 5 Minutes
-   2.3 Daily
-   2.4 Weekly
-   2.5 Monthly
+   2.1 For a specific date <br>  
+   2.2 Every 5 Minutes <br>
+   2.3 Daily <br>
+   2.4 Weekly <br>
+   2.5 Monthly <br>
 
 ## Technologies Used
 
