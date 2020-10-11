@@ -33,7 +33,8 @@ class Login extends Component {
             Sign In with Slack to send messages to your workspace
           </p>
           <SlackLogin
-            redirectUrl="http://localhost:3000/slack/auth/redirect"
+            // redirectUrl="http://localhost:3000/slack/auth/redirect"
+            redirectUrl="https://slackster-web.vercel.app/slack/auth/redirect"
             onFailure={this.onFailed}
             onSuccess={this.onSuccess}
             slackClientId="1364451180086.1366032718646"
