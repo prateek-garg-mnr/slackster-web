@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { hydrate, render } from "react-dom";
 // import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -9,21 +9,32 @@ import App from "./components/App";
 import "./index.css";
 
 const store = createStore(
-  reducers,
-  {
-    auth: {
-      token: localStorage.getItem("token"),
-    },
-    conversationList: {
-      conversationData: [],
-    },
-  },
-  applyMiddleware(reduxThunk)
+	reducers,
+	{
+		auth: {
+			token: localStorage.getItem("token"),
+		},
+		conversationList: {
+			conversationData: [],
+		},
+	},
+	applyMiddleware(reduxThunk)
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
+const rootElement = document.getElementById("root");
+if (rootElement.hasChildNodes()) {
+	hydrate(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		rootElement
+	);
+} else {
+	render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		rootElement
+	);
+}
+
