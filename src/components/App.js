@@ -17,13 +17,16 @@ class App extends Component {
 			<BrowserRouter>
 				<div className="main-app">
 					<Helmet
-						title="About"
+						title="Slackster"
 						meta={[
 							{ property: "og:title", content: "Slackster-app" },
 							{
 								property: "og:description",
 								content: "I can schedule messages for you",
-							},
+              },{
+                name: "Slack",
+                content:"I can schedule message for you"
+              },
 						]}
 					/>
 					<Header />
