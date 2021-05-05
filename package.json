@@ -33,6 +33,13 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "puppeteerExecutablePath": "/usr/bin/google-chrome-unstable"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
